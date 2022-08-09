@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
-import { PessoasGridComponent } from './pessoas-grid/pessoas-grid.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 
 import { SharedModule } from '../shared/shared.module';
@@ -15,11 +14,7 @@ import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
-  declarations: [
-    PessoaCadastroComponent,
-    PessoasGridComponent,
-    PessoasPesquisaComponent,
-  ],
+  declarations: [PessoaCadastroComponent, PessoasPesquisaComponent],
   imports: [
     CommonModule,
     FormsModule,
