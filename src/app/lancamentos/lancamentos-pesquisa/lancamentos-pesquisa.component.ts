@@ -1,6 +1,13 @@
-import { LancamentoFiltro, LancamentoService } from './../lancamento.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { LazyLoadEvent } from 'primeng/api';
+
+import { ErrorHandlerService } from './../../core/error-handler.service';
+import { LancamentoFiltro, LancamentoService } from './../lancamento.service';
+
+import {
+  LazyLoadEvent,
+  MessageService,
+  ConfirmationService,
+} from 'primeng/api';
 import { Table } from 'primeng/table';
 
 @Component({
@@ -15,17 +22,25 @@ export class LancamentosPesquisaComponent implements OnInit {
 
   @ViewChild('tabela') grid!: Table;
 
-  constructor(private lancamentoService: LancamentoService) {}
+  constructor(
+    private lancamentoService: LancamentoService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService,
+    private errorHandler: ErrorHandlerService
+  ) {}
 
   ngOnInit() {}
 
   pesquisar(pagina = 0) {
     this.filtro.pagina = pagina;
 
-    this.lancamentoService.pesquisar(this.filtro).then((resultado) => {
-      this.totalRegistros = resultado.total;
-      this.lancamentos = resultado.lancamentos;
-    });
+    this.lancamentoService
+      .pesquisar(this.filtro)
+      .then((resultado) => {
+        this.totalRegistros = resultado.total;
+        this.lancamentos = resultado.lancamentos;
+      })
+      .catch((erro) => this.errorHandler.handle(erro));
   }
 
   aoMudarPagina(event: LazyLoadEvent) {
@@ -36,9 +51,25 @@ export class LancamentosPesquisaComponent implements OnInit {
     this.pesquisar(pagina);
   }
 
-  excluir(lancamento: any) {
-    this.lancamentoService.excluir(lancamento.codigo).then(() => {
-      this.grid.reset();
+  confirmarExclusao(lancamento: any) {
+    this.confirmationService.confirm({
+      message: 'Tem certeza que deseja excluir?',
+      accept: () => {
+        this.excluir(lancamento);
+      },
     });
+  }
+
+  excluir(lancamento: any) {
+    this.lancamentoService
+      .excluir(lancamento.codigo)
+      .then(() => {
+        this.grid.reset();
+        this.messageService.add({
+          severity: 'success',
+          detail: 'Lançamento excluído com sucesso!',
+        });
+      })
+      .catch((erro) => this.errorHandler.handle(erro));
   }
 }
