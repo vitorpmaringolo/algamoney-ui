@@ -1,6 +1,9 @@
 import { DatePipe } from '@angular/common';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
+
+import { Lancamento } from 'src/app/core/model';
 
 export class LancamentoFiltro {
   descricao: string = '';
@@ -45,19 +48,18 @@ export class LancamentoService {
       );
     }
 
-    return this.http
-      .get(`${this.lancamentosUrl}?resumo`, { headers, params })
-      .toPromise()
-      .then((response: any) => {
-        const lancamentos = response['content'];
+    return firstValueFrom(
+      this.http.get(`${this.lancamentosUrl}?resumo`, { headers, params })
+    ).then((response: any) => {
+      const lancamentos = response['content'];
 
-        const resultado = {
-          lancamentos,
-          total: response['totalElements'],
-        };
+      const resultado = {
+        lancamentos,
+        total: response['totalElements'],
+      };
 
-        return resultado;
-      });
+      return resultado;
+    });
   }
 
   excluir(codigo: number): Promise<unknown> {
@@ -66,8 +68,18 @@ export class LancamentoService {
       'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
     );
 
-    return this.http
-      .delete(`${this.lancamentosUrl}/${codigo}`, { headers })
-      .toPromise();
+    return firstValueFrom(
+      this.http.delete(`${this.lancamentosUrl}/${codigo}`, { headers })
+    );
+  }
+
+  adicionar(lancamento: Lancamento): Promise<Lancamento> {
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+      .append('Content-Type', 'application/json');
+
+    return firstValueFrom(
+      this.http.post<Lancamento>(this.lancamentosUrl, lancamento, { headers })
+    );
   }
 }
