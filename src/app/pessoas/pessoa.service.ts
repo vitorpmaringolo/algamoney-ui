@@ -55,4 +55,25 @@ export class PessoaService {
       .toPromise()
       .then((response: any) => response['content']);
   }
+
+  excluir(codigo: number): Promise<unknown> {
+    const headers = new HttpHeaders().append(
+      'Authorization',
+      'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
+    );
+
+    return this.http
+      .delete(`${this.pessoasUrl}/${codigo}`, { headers })
+      .toPromise();
+  }
+
+  mudarStatus(codigo: number, ativo: boolean): Promise<unknown> {
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg==')
+      .append('Content-Type', 'application/json');
+
+    return this.http
+      .put<void>(`${this.pessoasUrl}/${codigo}/ativo`, ativo, { headers })
+      .toPromise();
+  }
 }

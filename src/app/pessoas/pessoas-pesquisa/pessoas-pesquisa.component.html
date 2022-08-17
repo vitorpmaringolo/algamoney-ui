@@ -19,7 +19,7 @@
 
   <div class="grid">
     <div class="col-12">
-      <p-table [value]="pessoas" [paginator]="true" [rows]="filtro.itensPorPagina" responsiveLayout="stack" [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)">
+      <p-table [value]="pessoas" [paginator]="true" [rows]="filtro.itensPorPagina" responsiveLayout="stack" [lazy]="true" [totalRecords]="totalRegistros" (onLazyLoad)="aoMudarPagina($event)" #tabela>
         <ng-template pTemplate="header">
           <tr>
             <th class="col-header">Nome</th>
@@ -35,13 +35,13 @@
             <td><span class="p-column-title">Cidade</span>{{pessoa.cidade}}</td>
             <td><span class="p-column-title">Estado</span>{{pessoa.estado}}</td>
             <td><span class="p-column-title">Status</span>
-              <a href="javascript:;" [pTooltip]="pessoa.ativo ? 'Desativar' : 'Ativar'" tooltipPosition="top">
+              <a href="javascript:;" [pTooltip]="pessoa.ativo ? 'Desativar' : 'Ativar'" tooltipPosition="top" (click)="alterarStatus(pessoa)">
                 {{ pessoa.ativo ? 'Ativo' : 'Inativo'}}
               </a>
             </td>
             <td class="col-acoes">
               <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
-              <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+              <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top" (click)="confirmarExclusao(pessoa)"></button>
             </td>
           </tr>
         </ng-template>
