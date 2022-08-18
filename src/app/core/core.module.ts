@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule, DatePipe, registerLocaleData } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -30,6 +31,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     CommonModule,
     ToastModule,
     ConfirmDialogModule,
+    RouterModule,
 
     TranslateModule.forRoot({
       loader: {
