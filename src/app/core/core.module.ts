@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import localePt from '@angular/common/locales/pt';
 
+import { AuthService } from './../seguranca/auth.service';
 import { ErrorHandlerService } from './error-handler.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LancamentoService } from '../lancamentos/lancamento.service';
@@ -48,6 +49,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     LancamentoService,
     PessoaService,
     ErrorHandlerService,
+    AuthService,
 
     TranslateService,
     MessageService,
