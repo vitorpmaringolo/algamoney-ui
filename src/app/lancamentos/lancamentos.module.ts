@@ -1,10 +1,10 @@
-import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
+import { LancamentosRoutingModule } from './lancamentos-routing.module';
 
 import { SharedModule } from '../shared/shared.module';
 
@@ -24,9 +24,9 @@ import { TooltipModule } from 'primeng/tooltip';
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule,
 
     SharedModule,
+    LancamentosRoutingModule,
 
     ButtonModule,
     CalendarModule,
@@ -39,6 +39,6 @@ import { TooltipModule } from 'primeng/tooltip';
     TableModule,
     TooltipModule,
   ],
-  exports: [LancamentoCadastroComponent, LancamentosPesquisaComponent],
+  exports: [],
 })
 export class LancamentosModule {}

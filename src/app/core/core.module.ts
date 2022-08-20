@@ -2,11 +2,15 @@ import { RouterModule } from '@angular/router';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule, DatePipe, registerLocaleData } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { Title } from '@angular/platform-browser';
+import localePt from '@angular/common/locales/pt';
 
 import { ErrorHandlerService } from './error-handler.service';
 import { NavbarComponent } from './navbar/navbar.component';
+import { LancamentoService } from '../lancamentos/lancamento.service';
+import { PessoaService } from '../pessoas/pessoa.service';
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
 
-import localePt from '@angular/common/locales/pt';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import {
@@ -16,8 +20,6 @@ import {
 } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { LancamentoService } from '../lancamentos/lancamento.service';
-import { PessoaService } from '../pessoas/pessoa.service';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -26,7 +28,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 }
 
 @NgModule({
-  declarations: [NavbarComponent],
+  declarations: [NavbarComponent, PaginaNaoEncontradaComponent],
   imports: [
     CommonModule,
     ToastModule,
@@ -46,9 +48,11 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     LancamentoService,
     PessoaService,
     ErrorHandlerService,
+
     TranslateService,
     MessageService,
     ConfirmationService,
+    Title,
     DatePipe,
     { provide: LOCALE_ID, useValue: 'pt-BR' },
   ],

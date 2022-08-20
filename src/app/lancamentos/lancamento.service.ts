@@ -106,22 +106,20 @@ export class LancamentoService {
     return firstValueFrom(
       this.http.get<Lancamento>(`${this.lancamentosUrl}/${codigo}`, { headers })
     ).then((response: any) => {
-      this.converterStringsParaData([response]);
+      this.converterStringsParaDatas([response]);
 
       return response;
     });
   }
 
-  private converterStringsParaData(lancamentos: Lancamento[]) {
+  private converterStringsParaDatas(lancamentos: Lancamento[]) {
     for (const lancamento of lancamentos) {
-      // Evita bug na hora da edição, adicionar o timezone do usuário
+      // Evita bug na hora da edição, adiciona o timezone do usuário
       let offset = new Date().getTimezoneOffset() * 60000;
 
-      if (lancamento.dataVencimento) {
-        lancamento.dataVencimento = new Date(
-          new Date(lancamento.dataVencimento).getTime() + offset
-        );
-      }
+      lancamento.dataVencimento = new Date(
+        new Date(lancamento.dataVencimento!).getTime() + offset
+      );
 
       if (lancamento.dataPagamento) {
         lancamento.dataPagamento = new Date(

@@ -1,7 +1,9 @@
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import { PessoasRoutingModule } from './pessoas-routing.module';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
 
@@ -20,6 +22,7 @@ import { TooltipModule } from 'primeng/tooltip';
     FormsModule,
 
     SharedModule,
+    PessoasRoutingModule,
 
     ButtonModule,
     InputMaskModule,
@@ -27,6 +30,6 @@ import { TooltipModule } from 'primeng/tooltip';
     TableModule,
     TooltipModule,
   ],
-  exports: [PessoaCadastroComponent, PessoasPesquisaComponent],
+  exports: [],
 })
 export class PessoasModule {}
