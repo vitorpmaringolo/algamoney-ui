@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 
 import { AuthGuard } from './auth.guard';
 import { LogoutService } from './logout.service';
+import { environment } from './../../environments/environment';
 import { SegurancaRoutingModule } from './seguranca-routing.module';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { MoneyHttpInterceptor } from './money-http-interceptor';
@@ -29,8 +30,8 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
         tokenGetter: () => {
           return localStorage.getItem('token');
         },
-        allowedDomains: ['localhost:8080'],
-        disallowedRoutes: ['http://localhost:8080/oauth/token'],
+        allowedDomains: environment.tokenAllowedDomains,
+        disallowedRoutes: environment.tokenDisallowedRoutes,
       },
     }),
   ],
