@@ -13,7 +13,7 @@
       <a routerLink="/lancamentos" *ngIf="temPermissao('ROLE_PESQUISAR_LANCAMENTO')">Lançamentos</a></li>
     <li class="navbar-menuitem" routerLinkActive="ativo" (click)="exibindoMenu = !exibindoMenu">
       <a routerLink="/pessoas" *ngIf="temPermissao('ROLE_PESQUISAR_PESSOA')">Pessoas</a></li>
-    <li class="navbar-menuitem"><a href="#">Logout</a></li>
+    <li class="navbar-menuitem"><a href="javascript:;" (click)="logout()">Logout</a></li>
   </ul>
 
 </nav>
