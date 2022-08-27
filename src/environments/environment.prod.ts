@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
   apiUrl: 'https://algamoney-api-vitor.herokuapp.com',
-  tokenAllowedDomains: [/algamoney-api-vitor.herokuapp.com/],
-  tokenDisallowedRoutes: [/\/oauth\/token'/],
+  tokenAllowedDomains: [new RegExp('algamoney-api-vitor.herokuapp.com')],
+  tokenDisallowedRoutes: [new RegExp('/oauth/token')],
 };
