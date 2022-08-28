@@ -8,7 +8,7 @@ import { ButtonModule } from 'primeng/button';
 
 import { AuthGuard } from './auth.guard';
 import { LogoutService } from './logout.service';
-import { environment } from './../../environments/environment';
+import { environment } from 'src/environments/environment';
 import { SegurancaRoutingModule } from './seguranca-routing.module';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { MoneyHttpInterceptor } from './money-http-interceptor';

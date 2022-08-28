@@ -1,8 +1,9 @@
-import { environment } from './../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+
 import { Pessoa } from '../core/model';
+import { environment } from 'src/environments/environment';
 
 export class PessoaFiltro {
   nome?: string;

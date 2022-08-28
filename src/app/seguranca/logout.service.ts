@@ -1,8 +1,9 @@
-import { environment } from './../../environments/environment';
-import { firstValueFrom } from 'rxjs';
-import { AuthService } from './auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
+import { AuthService } from './auth.service';
+import { firstValueFrom } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',

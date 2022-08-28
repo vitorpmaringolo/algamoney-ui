@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import { environment } from './../../environments/environment';
+import { environment } from 'src/environments/environment';
 
 import { Lancamento } from 'src/app/core/model';
 
