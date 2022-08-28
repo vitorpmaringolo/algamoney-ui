@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
@@ -24,6 +24,7 @@ import { TooltipModule } from 'primeng/tooltip';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
 
     SharedModule,
     LancamentosRoutingModule,
