@@ -20,7 +20,7 @@ export class MoneyHttpInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     if (
-      !req.url.includes('/oauth/token') &&
+      !req.url.includes('/oauth2/token') &&
       this.auth.isAccessTokenInvalido()
     ) {
       return from(this.auth.obterNovoAccessToken()).pipe(

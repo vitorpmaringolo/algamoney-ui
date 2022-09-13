@@ -1,22 +1,20 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
-import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 
-import { AuthGuard } from './auth.guard';
-import { LogoutService } from './logout.service';
 import { environment } from 'src/environments/environment';
-import { SegurancaRoutingModule } from './seguranca-routing.module';
-import { LoginFormComponent } from './login-form/login-form.component';
+import { AuthGuard } from './auth.guard';
 import { MoneyHttpInterceptor } from './money-http-interceptor';
+import { SegurancaRoutingModule } from './seguranca-routing.module';
 
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { AuthorizedComponent } from './authorized/authorized.component';
 
 @NgModule({
-  declarations: [LoginFormComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -43,7 +41,7 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
       multi: true,
     },
     AuthGuard,
-    LogoutService,
   ],
+  declarations: [AuthorizedComponent],
 })
 export class SegurancaModule {}

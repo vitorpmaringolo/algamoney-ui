@@ -5,12 +5,16 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
+import { DashboardService } from './../dashboard/dashboard.service';
+import { CategoriaService } from './../categorias/categoria.service';
 import { LancamentoService } from '../lancamentos/lancamento.service';
 import { PessoaService } from '../pessoas/pessoa.service';
 import { AuthService } from './../seguranca/auth.service';
 import { ErrorHandlerService } from './error-handler.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component';
+import { NaoAutorizadoComponent } from './nao-autorizado.component';
+import { RelatoriosService } from '../relatorios/relatorios.service';
 
 import {
   TranslateLoader,
@@ -21,7 +25,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
-import { NaoAutorizadoComponent } from './nao-autorizado.component';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -53,6 +56,9 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   providers: [
     LancamentoService,
     PessoaService,
+    CategoriaService,
+    DashboardService,
+    RelatoriosService,
     ErrorHandlerService,
     AuthService,
 

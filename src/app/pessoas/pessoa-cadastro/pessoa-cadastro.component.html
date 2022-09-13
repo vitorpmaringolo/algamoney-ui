@@ -49,17 +49,26 @@
       </div>
 
       <div class="p-fluid md:col-6 col-12">
-        <label>Cidade</label>
-        <input pInputText name="cidade" type="text" [(ngModel)]="pessoa.endereco.cidade" #cidade="ngModel" required>
-
-        <app-message [control]="cidade.control" error="required" text="Informe a cidade"></app-message>
+        <label>Estado</label>
+        <p-dropdown placeholder="Selecione..." [filter]="true" [options]="estados"
+          [(ngModel)]="estadoSelecionado" name="estadoSelecionado" (onChange)="carregarCidades()"
+          #estado="ngModel" [required]="true"></p-dropdown>
+          <app-message [control]="estado.control" error="required" text="Informe o Estado"></app-message>
       </div>
 
       <div class="p-fluid md:col-6 col-12">
-        <label>Estado</label>
-        <input pInputText name="estado" type="text" [(ngModel)]="pessoa.endereco.estado" #estado="ngModel" required>
+        <label>Cidade</label>
+        <p-dropdown placeholder="Selecione..." [filter]="true" [options]="cidades"
+          emptyMessage="Não há cidades cadastradas para o Estado selecionado"
+          [(ngModel)]="pessoa.endereco.cidade.codigo" name="cidade" #cidade="ngModel" [required]="true"
+          [disabled]="!estadoSelecionado"></p-dropdown>
+        <app-message [control]="cidade.control" error="required" text="Informe a cidade"></app-message>
+      </div>
 
-        <app-message [control]="estado.control" error="required" text="Informe o Estado"></app-message>
+      <div class="col-12">
+        <p-panel header="Contatos">
+          <app-pessoa-cadastro-contato [contatos]="pessoa.contatos"></app-pessoa-cadastro-contato>
+        </p-panel>
       </div>
 
       <div class="col-12">

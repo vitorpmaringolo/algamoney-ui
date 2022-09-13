@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
-import { Pessoa } from '../core/model';
+import { Cidade, Estado, Pessoa } from '../core/model';
 import { environment } from 'src/environments/environment';
 
 export class PessoaFiltro {
@@ -15,10 +15,14 @@ export class PessoaFiltro {
   providedIn: 'root',
 })
 export class PessoaService {
-  pessoasUrl: string = '';
+  pessoasUrl: string;
+  cidadesUrl: string;
+  estadosUrl: string;
 
   constructor(private http: HttpClient) {
     this.pessoasUrl = `${environment.apiUrl}/pessoas`;
+    this.cidadesUrl = `${environment.apiUrl}/cidades`;
+    this.estadosUrl = `${environment.apiUrl}/estados`;
   }
 
   pesquisar(filtro: PessoaFiltro): Promise<any> {
@@ -74,5 +78,14 @@ export class PessoaService {
     return firstValueFrom(
       this.http.get<Pessoa>(`${this.pessoasUrl}/${codigo}`)
     );
+  }
+
+  listarEstados(): Promise<Estado[]> {
+    return firstValueFrom(this.http.get<Estado[]>(this.estadosUrl));
+  }
+
+  pesquisarCidades(estadoId: number): Promise<Cidade[]> {
+    const params = new HttpParams().set('estado', estadoId);
+    return firstValueFrom(this.http.get<Cidade[]>(this.cidadesUrl, { params }));
   }
 }

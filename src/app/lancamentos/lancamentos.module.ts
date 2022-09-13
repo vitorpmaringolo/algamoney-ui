@@ -11,10 +11,12 @@ import { SharedModule } from '../shared/shared.module';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
+import { FileUploadModule } from 'primeng/fileupload';
 import { InputMaskModule } from 'primeng/inputmask';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
@@ -32,10 +34,12 @@ import { TooltipModule } from 'primeng/tooltip';
     ButtonModule,
     CalendarModule,
     DropdownModule,
+    FileUploadModule,
     InputMaskModule,
     InputNumberModule,
     InputTextareaModule,
     InputTextModule,
+    ProgressSpinnerModule,
     SelectButtonModule,
     TableModule,
     TooltipModule,

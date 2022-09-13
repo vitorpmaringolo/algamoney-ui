@@ -1,9 +1,6 @@
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
-import { LogoutService } from './../../seguranca/logout.service';
 import { AuthService } from './../../seguranca/auth.service';
-import { ErrorHandlerService } from './../error-handler.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,12 +11,7 @@ export class NavbarComponent implements OnInit {
   exibindoMenu: boolean = false;
   usuarioLogado: string = '';
 
-  constructor(
-    private auth: AuthService,
-    private logoutService: LogoutService,
-    private errorHandler: ErrorHandlerService,
-    private router: Router
-  ) {}
+  constructor(private auth: AuthService) {}
 
   ngOnInit(): void {
     this.usuarioLogado = this.auth.jwtPayload?.nome;
@@ -30,11 +22,6 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    this.logoutService
-      .logout()
-      .then(() => {
-        this.router.navigate(['/login']);
-      })
-      .catch((erro) => this.errorHandler.handle(erro));
+    this.auth.logout();
   }
 }

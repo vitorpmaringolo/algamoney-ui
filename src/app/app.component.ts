@@ -21,8 +21,4 @@ export class AppComponent implements OnInit {
       .get('primeng')
       .subscribe((res) => this.config.setTranslation(res));
   }
-
-  exibindoNavbar() {
-    return this.router.url !== '/login';
-  }
 }
